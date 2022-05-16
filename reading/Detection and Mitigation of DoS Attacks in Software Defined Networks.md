@@ -2,7 +2,7 @@
 
 > Shang Gao etc.
 > 
-> IEEE/ACM Transaction on Network: CCF-A, JCR Q2, 3.56
+> IEEE/ACM Transaction on Network: CCF-A, JCR Q1(好奇怪，两个排名), 3.56
 
 本文提出了一种FloodDefender的DoS检测及缓解系统，来应对针对SDN的DoS攻击。该系统部署在控制层上，具体而言部署在控制应用和控制器之间（还没完全明白控制层里面具体的组成，看文中的图更像是把应用层和控制层结合起来了）。
 
@@ -22,7 +22,11 @@
 
 ### 包过滤组件
 
+包过滤器组件中使用了Packet in缓存，用B+树来存数据，存了个啥以及为什么要存没仔细看（数据结构恐慌症）。然后就是两步过滤，第一步是基于*Flow entry frequency*特征的过滤，第二步是基于非对称特征的过滤。对于*非对称性*，文中提到的情景是：如果流表中生成了以A为目的地址的流表项，按理说应该有以A为源地址的流表项，但是如果是针对SDN的攻击，攻击者会伪造大量的目的地址，实际上这些地址没法回应，导致对称性被破坏。
+
 ### 流表管理
+
+## Reference
 
 <div class="references">
   <p id="ref1">[1] B. Yuan, D. Zou, S. Yu, H. Jin, W. Qiang and J. Shen, "Defending Against Flow Table Overloading Attack in Software-Defined Networks," in IEEE Transactions on Services Computing, vol. 12, no. 2, pp. 231-246, 1 March-April 2019, doi: 10.1109/TSC.2016.2602861.</p>
